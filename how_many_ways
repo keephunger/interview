@@ -1,0 +1,28 @@
+res=0
+def how_many_ways(digitarray):
+    digitarray = list(digitarray)
+    def on_todo(digit_list):
+        global res
+        if len(digit_list)==0:
+            res+=1
+            return
+        if len(digit_list)==1:
+            res+=1
+            return
+        if digit_list[0]=='1':
+            on_todo(digit_list[1:])
+            on_todo(digit_list[2:])
+        elif digit_list[0]=='2':
+            if int(digit_list[1])<=5:
+                on_todo(digit_list[1:])
+                on_todo(digit_list[2:])
+            else:
+                on_todo(digit_list[1:])
+        else:
+            on_todo(digit_list[1:])
+    on_todo(digitarray)
+    
+    
+if __name__ == '__main__':
+    how_many_ways('41723')
+    print(res)
